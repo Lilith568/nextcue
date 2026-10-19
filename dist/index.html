@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f3eb">
+  <meta name="description" content="NextCue is an interruption-recovery prototype. Pause a routine, keep your place, and return to one clear next step.">
+  <title>NextCue — Your next small step</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to your routine</a>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Main navigation">
+      <a class="brand" href="#main" aria-label="NextCue home"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span><span>nextcue<span class="brand-dot">.</span></span></a>
+      <div class="sidebar-label">A LITTLE MOMENTUM</div>
+      <nav><a class="nav-item selected" href="#main" aria-current="page"><span data-icon="grid"></span> My space <span class="nav-dot"></span></a><button class="nav-item" id="routines-nav"><span data-icon="list"></span> My routines</button><button class="nav-item" id="how-nav"><span data-icon="info"></span> How it works</button></nav>
+      <div class="sidebar-bottom">
+        <div class="gentle-note"><span class="tiny-sun" aria-hidden="true">✳</span><p>Progress has<br>its own pace.</p><span>Yours is welcome here.</span></div>
+        <button class="privacy-link" id="privacy-button"><span data-icon="shield"></span> Your space, your data</button>
+        <div class="prototype-tag">INTERACTIVE PROTOTYPE <span>v0.1</span></div>
+      </div>
+    </aside>
+
+    <div class="workspace">
+      <header class="topbar"><div class="breadcrumb">My space <span>/</span> <strong>One step at a time</strong></div><button class="about-pill" id="simulation-info"><span class="status-dot"></span> Alexa+ experience simulation <span data-icon="arrow-up-right"></span></button></header>
+      <main id="main" tabindex="-1">
+        <section class="page-heading"><div><div class="eyebrow"><span></span> A SOFTER WAY TO GET THINGS DONE</div><h1>Pick up where<br class="mobile-break"> you left off<span>.</span></h1><p>You don’t need to start over. Just find your next small step.</p></div><div class="hero-doodle" aria-hidden="true"><svg viewBox="0 0 130 100"><path d="M27 71c-9-22-9-42 3-48 18-9 27 29 38 33 12 4 10-29 24-28 10 1 13 22 10 34" fill="none" stroke="#254b40" stroke-width="2" stroke-linecap="round"/><path d="m22 64 5 10 10-5" fill="none" stroke="#254b40" stroke-width="2" stroke-linecap="round"/><circle cx="101" cy="64" r="9" fill="#e4967c"/><path d="m66 7 2 7m9-4-5 5m-13-5 5 5" stroke="#b78745" stroke-width="2" stroke-linecap="round"/></svg><span>right where you are</span></div></section>
+
+        <div class="content-grid">
+          <div class="routine-column">
+            <section class="routine-chooser" id="routine-chooser" aria-labelledby="routines-heading">
+              <div class="section-heading"><h2 id="routines-heading">What’s on your mind?</h2><button class="text-button" id="custom-button"><span data-icon="plus"></span> Make your own</button></div>
+              <div class="scenario-grid" id="scenario-grid"></div>
+            </section>
+            <section class="current-card" id="current-card" aria-labelledby="current-heading"></section>
+            <section class="steps-card" id="steps-card" aria-labelledby="steps-heading" hidden><div class="section-heading"><h2 id="steps-heading">Your path, made simple</h2><span class="small-muted" id="progress-label"></span></div><div class="progress-track" role="progressbar" aria-label="Routine progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progress-track"><div id="progress-fill"></div></div><ol class="step-list" id="step-list"></ol></section>
+            <div class="under-note"><span data-icon="leaf"></span> Small steps count. So do the pauses in between.</div>
+          </div>
+
+          <aside class="companion-column" aria-label="Cue assistant and focus tools">
+            <section class="conversation-card" aria-labelledby="conversation-heading">
+              <div class="conversation-header"><div class="cue-avatar" aria-hidden="true"><span></span><span></span><span></span></div><div><h2 id="conversation-heading">A cue when you need it</h2><p>Here to hold your place.</p></div><span class="online-dot" aria-hidden="true"></span></div>
+              <div class="conversation-log" id="conversation-log" role="log" aria-label="Session conversation" aria-live="polite" aria-relevant="additions"></div>
+              <div class="command-chips" id="command-chips" aria-label="Suggested commands"></div>
+              <form class="command-form" id="command-form"><label class="sr-only" for="command-input">Type a command</label><input id="command-input" name="command" autocomplete="off" maxlength="520" placeholder="Try “start study”…"><button type="submit" aria-label="Send command"><span data-icon="arrow-up"></span></button></form>
+              <p class="command-footnote">Typed commands · fixed responses · <button id="commands-help">see commands</button></p>
+            </section>
+
+            <section class="timer-card" aria-labelledby="timer-heading"><div class="timer-heading"><span data-icon="timer"></span><h2 id="timer-heading">A little focus time</h2><span>OPTIONAL</span></div><div class="timer-row"><div><span class="timer-time" id="timer-time" role="timer" aria-live="off">10:00</span><p id="timer-note">One small window, just for you.</p></div><button class="timer-button" id="timer-toggle" aria-label="Start ten-minute timer"><span data-icon="play"></span></button></div><div class="timer-bottom"><select id="timer-duration" aria-label="Focus timer duration"><option value="300">5 minutes</option><option value="600" selected>10 minutes</option><option value="1500">25 minutes</option></select><button class="text-button" id="timer-reset">Reset</button></div></section>
+
+            <section class="preferences-card" aria-label="Preferences"><label class="toggle-row"><span><strong>Read cues aloud</strong><small>Your browser’s voice. No microphone.</small></span><input type="checkbox" id="read-aloud"><span class="toggle-ui" aria-hidden="true"></span></label><label class="toggle-row"><span><strong>Remember on this device</strong><small id="memory-description">Off · clears when this page closes</small></span><input type="checkbox" id="remember"><span class="toggle-ui" aria-hidden="true"></span></label><button class="clear-data" id="clear-data" hidden>Clear saved routine</button><p class="preference-status" id="preference-status" role="status"></p></section>
+          </aside>
+        </div>
+      </main>
+      <footer><span>Made for the way real life happens.</span><span>One thing. Then the next. <span aria-hidden="true">↗</span></span></footer>
+    </div>
+  </div>
+
+  <dialog id="custom-dialog" aria-labelledby="custom-title"><form id="custom-form"><button class="dialog-close" type="button" data-close="custom-dialog" aria-label="Close custom routine dialog">×</button><div class="eyebrow">MAKE IT YOURS</div><h2 id="custom-title">Your day. Your steps.</h2><p>A simple routine you can pause and come back to.</p><label for="routine-name">Routine name</label><input id="routine-name" maxlength="60" placeholder="For example, get ready for tomorrow" required><label for="routine-steps">Your steps <span>one per line · up to 12</span></label><textarea id="routine-steps" rows="6" placeholder="Choose tomorrow’s clothes&#10;Pack the things I need&#10;Set an alarm" required></textarea><p class="form-error" id="custom-error" role="alert"></p><button class="button primary full-width" type="submit">Start my routine <span data-icon="arrow-right"></span></button></form></dialog>
+  <dialog id="pause-dialog" aria-labelledby="pause-title"><form id="pause-form"><button class="dialog-close" type="button" data-close="pause-dialog" aria-label="Close pause dialog">×</button><div class="eyebrow">LIFE HAPPENS</div><h2 id="pause-title">Leave yourself a little cue.</h2><p>Your current step stays right here. Add a note if it will help when you return.</p><label for="pause-note">A note for later <span>optional</span></label><textarea id="pause-note" maxlength="500" rows="3" placeholder="For example, my notes are open to page 12"></textarea><button class="button primary full-width" type="submit">Pause & keep my place <span data-icon="pause"></span></button></form></dialog>
+  <dialog id="substeps-dialog" aria-labelledby="substeps-title"><form id="substeps-form"><button class="dialog-close" type="button" data-close="substeps-dialog" aria-label="Close smaller steps dialog">×</button><div class="eyebrow">MAKE IT SMALLER</div><h2 id="substeps-title">What feels manageable?</h2><p>Break your custom step into 2–8 smaller actions. These are written by you, not generated by AI.</p><label for="substeps-input">Smaller steps <span>one per line</span></label><textarea id="substeps-input" rows="5" required></textarea><p class="form-error" id="substeps-error" role="alert"></p><button class="button primary full-width" type="submit">Use these smaller steps <span data-icon="arrow-right"></span></button></form></dialog>
+  <dialog id="confirm-dialog" aria-labelledby="confirm-title"><button class="dialog-close" type="button" data-close="confirm-dialog" aria-label="Cancel">×</button><div class="eyebrow">A QUICK CHECK</div><h2 id="confirm-title"></h2><p id="confirm-body"></p><div class="dialog-actions"><button class="button secondary" id="confirm-cancel">Keep this routine</button><button class="button primary" id="confirm-accept">Continue</button></div></dialog>
+  <dialog id="help-dialog" aria-labelledby="help-title"><button class="dialog-close" type="button" data-close="help-dialog" aria-label="Close how it works">×</button><div class="eyebrow">MEET NEXTCUE</div><h2 id="help-title">A place to pick things up.</h2><p>Choose a routine and work through one step at a time. When you are interrupted, pause with an optional note. Resume to see the exact next step, your last completed step, and how long you were away.</p><div class="help-callout"><strong>Alexa+ experience simulation</strong><p>This standalone prototype demonstrates an interaction concept. It is not connected to Alexa or Amazon. Commands and smaller steps use fixed local rules; there is no AI model, microphone access, account, or application backend.</p></div><h3>Try a command</h3><ul class="help-commands"><li><code>start study</code> Start the study routine</li><li><code>start pack</code> Start packing a bag</li><li><code>start tidy</code> Start tidying your desk</li><li><code>done</code> Complete the current action</li><li><code>pause your note</code> Pause and save a cue</li><li><code>resume</code> Return to the same action</li><li><code>smaller</code> Break a step into smaller actions</li><li><code>status</code> Check where you are</li></ul><h3>Your space, your data</h3><p>By default, your routine lives only in this page’s memory. If you choose “Remember on this device”, the routine and pause note are saved in this browser’s local storage. Conversation history and the timer are never saved. Turning it off removes the saved routine. “Clear saved routine” also resets your current routine.</p><p>Read-aloud is optional and uses your browser’s speech synthesis voice, which may be provided by your browser or device. NextCue does not request microphone access or send your routine to an application backend.</p></dialog>
+  <div class="sr-only" id="app-status" role="status" aria-live="polite"></div>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
